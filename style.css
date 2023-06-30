@@ -1,0 +1,61 @@
+* {
+    margin:0;
+    padding: 0;
+}
+
+html, 
+body {
+    background-color: rgb(176, 176, 243);
+}
+
+#title {
+    font-size: 48px;
+    font-weight: bold;
+    text-align: center;
+    padding: 2rem;
+}
+
+form {
+    font-size: 36px;
+    text-align: center;
+}
+
+input {
+    font-size: 24px;
+}
+
+.current-container {
+    display: flex;
+    margin-top: 2rem;
+    justify-content: space-around;
+    font-size: 36px;
+    border: 2px solid blue;
+    padding: 1rem;
+}
+
+.extended-container {
+    font-size: 24px;
+    border: 2px solid blue;
+    padding: 1rem;
+}
+
+#extended-title {
+    text-align: center;
+    font-weight: bold;
+}
+
+.extended-weather-img {
+    border: 1px solid blue;
+    height: 5rem;
+    width: 5rem;
+}
+
+.extended-forcast-container {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 2rem;
+}
+
+.img-day {
+    display: flex;
+}
