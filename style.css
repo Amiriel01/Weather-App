@@ -59,3 +59,7 @@ input {
 .img-day {
     display: flex;
 }
+
+.temp-c {
+    display: none;
+}

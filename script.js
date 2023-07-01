@@ -1,22 +1,15 @@
 //attaches extended-container html div to a global variable//
 
 
-function populateExtendedForcast() {
+function populateExtendedForcast(response) {
     //append function to container to populate card data//
     extendedForcastContainer = document.querySelector(".extended-forcast-container");
-    // console.log(extendedForcastContainer);
-    extendedForcastContainer.appendChild(createForcastCard("Image", "Date", "Condition", "Temp Low", "Temp High","Temp Low", "Temp High"));
+    console.log(response);
+    response.forecast.forecastday.forEach((forecastDay)=> {
+        extendedForcastContainer.appendChild(createForcastCard("Image", forecastDay.date, "Condition", "Temp Low", "Temp High", forecastDay.day.mintemp_c, "Temp High"));
+    })
 
-    extendedForcastContainer.appendChild(createForcastCard("Image", "Date", "Condition", "Temp Low", "Temp High","Temp Low", "Temp High"));
-
-    extendedForcastContainer.appendChild(createForcastCard("Image", "Date", "Condition", "Temp Low", "Temp High","Temp Low", "Temp High"));
-
-    extendedForcastContainer.appendChild(createForcastCard("Image", "Date", "Condition", "Temp Low", "Temp High","Temp Low", "Temp High"));
-
-    extendedForcastContainer.appendChild(createForcastCard("Image", "Date", "Condition", "Temp Low", "Temp High","Temp Low", "Temp High"));
 }
-
-populateExtendedForcast();
 
 //create five day forcast cards function to create the cards//
 function createForcastCard(img, day, info, lowF, highF, lowC, highC) {
@@ -42,7 +35,7 @@ function createForcastCard(img, day, info, lowF, highF, lowC, highC) {
 
     forcastFlex.appendChild(extendedDay);
     forcastFlex.appendChild(extendedWeatherImage);
-    
+
 
     //create the extendedWeatherForcast div and append it to the forcast flex container//
     let extendedContidion = document.createElement("div");
@@ -52,35 +45,35 @@ function createForcastCard(img, day, info, lowF, highF, lowC, highC) {
 
     //create the temp low div and append it to the forcast flex container//
     let tempLowF = document.createElement("div");
-    tempLowF.classList.add("temp-low-f");
+    tempLowF.classList.add("low-temp-f", "temp-f");
     tempLowF.innerText = lowF + '\u00B0 F';
     forcastFlex.appendChild(tempLowF);
 
     //create the temp high div and append it to the forcast flex container//
     let tempHighF = document.createElement("div");
-    tempHighF.classList.add("temp-high-f");
+    tempHighF.classList.add("high-temp-f");
     tempHighF.innerText = highF + '\u00B0 F';
     forcastFlex.appendChild(tempHighF);
 
     //create the temp low div and append it to the forcast flex container//
     let tempLowC = document.createElement("div");
-    tempLowC.classList.add("temp-low-c");
+    tempLowC.classList.add("low-temp-c");
     tempLowC.innerText = lowC + '\u00B0 C';
     forcastFlex.appendChild(tempLowC);
 
     //create the temp high div and append it to the forcast flex container//
     let tempHighC = document.createElement("div");
-    tempHighC.classList.add("temp-high-c");
+    tempHighC.classList.add("high-temp-c");
     tempHighC.innerText = highC + '\u00B0 C';
     forcastFlex.appendChild(tempHighC);
 
     return forcastFlex;
 }
+let searchButton = document.querySelector('#enter');
+searchButton.addEventListener("click", locationSearch);
 
 function locationSearch(e) {
     //set the button for the location name input to run location search//
-    let searchButton = document.querySelector('#enter');
-    searchButton.addEventListener("click", locationSearch);
 
     // let image = document.querySelector('img');
     let search = document.getElementById('search');
@@ -108,7 +101,7 @@ function locationSearch(e) {
         .then(function (response) {
             //creates current forcast data//
             let currentImage = document.querySelector("#current-image");
-            currentImage.src = response.current.condition.icon;
+            currentImage.src = `http:${response.current.condition.icon}`;
 
             let currentCondition = document.querySelector("#current-condition");
             currentCondition.innerText = response.current.condition.text;
@@ -116,36 +109,37 @@ function locationSearch(e) {
             let cityName = document.querySelector("#city-name")
             cityName.innerText = response.location.name
 
-            let currentTemperatureF = document.querySelector("#current-temperature-f")
+            let currentTemperatureF = document.querySelector("#current-temp-f")
             currentTemperatureF.innerText = response.current.temp_f + '\u00B0 F'
 
-            let currentTemperatureC = document.querySelector("#current-temperature-c")
+            let currentTemperatureC = document.querySelector("#current-temp-c")
             currentTemperatureC.innerText = response.current.temp_c + '\u00B0 C'
 
-            //creates extended weather dates data//
-            let extendedDay1 = document.querySelector("#extended-day");
-            extendedDay1.innerText = response.forcast.forcastday[0].date;
+            // //creates extended weather dates data//
+            // let extendedDay1 = document.querySelector("#extended-day");
+            // extendedDay1.innerText = response.forcast.forcastday[0].date;
 
-            let extendedDay2 = document.querySelector("#extended-day");
-            extendedDay2.innerText = response.forcast.forcastday[1].date;
+            // let extendedDay2 = document.querySelector("#extended-day");
+            // extendedDay2.innerText = response.forcast.forcastday[1].date;
 
             //creates extended forcast icon data//
-            let extendedWeatherImage1 = document.querySelector("#extended-weather-img");
-            extendedWeatherImage1.src = response.forcast.forcastday[0].condition.icon;
+            populateExtendedForcast(response) 
+            // let extendedWeatherImage1 = document.querySelector("#extended-weather-img");
+            // extendedWeatherImage1.src = response.forcast.forcastday[0].condition.icon;
 
-            let extendedWeatherImage2 = document.querySelector("#extended-weather-img");
-            extendedWeatherImage2.src = response.forcast.forcastday[1].condition.icon;
+            // let extendedWeatherImage2 = document.querySelector("#extended-weather-img");
+            // extendedWeatherImage2.src = response.forcast.forcastday[1].condition.icon;
 
-            let extendedWeatherImage3 = document.querySelector("#extended-weather-img");
-            extendedWeatherImage3.src = response.forcast.forcastday[2].condition.icon;
+            // let extendedWeatherImage3 = document.querySelector("#extended-weather-img");
+            // extendedWeatherImage3.src = response.forcast.forcastday[2].condition.icon;
 
-            let extendedWeatherImage4 = document.querySelector("#extended-weather-img");
-            extendedWeatherImage4.src = response.forcast.forcastday[3].condition.icon;
+            // let extendedWeatherImage4 = document.querySelector("#extended-weather-img");
+            // extendedWeatherImage4.src = response.forcast.forcastday[3].condition.icon;
 
-            let extendedWeatherImage5 = document.querySelector("#extended-weather-img");
-            extendedWeatherImage5.src = response.forcast.forcastday[4].condition.icon;
+            // let extendedWeatherImage5 = document.querySelector("#extended-weather-img");
+            // extendedWeatherImage5.src = response.forcast.forcastday[4].condition.icon;
 
-            
+
 
         })
 
@@ -153,4 +147,21 @@ function locationSearch(e) {
 }
 locationSearch();
 
+let toggleF = document.querySelector("#toggle-F");
+toggleF.addEventListener("click", fahrenheitOrCelsius);
+
+let toggleC = document.querySelector("#toggle-C");
+toggleC.addEventListener("click", fahrenheitOrCelsius);
+
+function fahrenheitOrCelsius() {
+    
+    if (document.querySelector("#toggle-F").checked) {
+        document.querySelector(".temp-f").style.display = 'block';
+        document.querySelector(".temp-c").style.display = 'none';
+    } else {
+        document.querySelector(".temp-f").style.display = 'none';
+        document.querySelector(".temp-c").style.display = 'block';
+    }
+}
+// fahrenheitOrCelsius();
 
