@@ -59,10 +59,10 @@ function createForcastCard(img, day, info) {
 //     console.log(jsonData);
 //   }
 
-let searchButton = document.querySelector('#enter');
-searchButton.addEventListener("click", newLocation);
-
-function newLocation(e) {
+function locationSearch(e) {
+    //set the button for the location name input to run location search//
+    let searchButton = document.querySelector('#enter');
+    searchButton.addEventListener("click", locationSearch);
 
     // let image = document.querySelector('img');
     let search = document.getElementById('search');
@@ -71,24 +71,53 @@ function newLocation(e) {
     if (!searchValue) {
         searchValue = 'chicago';
     }
-    console.log(e);
+    // console.log(e);
 
     if (!!e) {
         e.preventDefault();
     };
-    console.log(searchValue);
+    // console.log(searchValue);
+    //fetch data from the api site//
     fetch(`https://api.weatherapi.com/v1/forecast.json?q=${searchValue}&days=5&key=8b8288369c154c74b09154532232806`, { mode: 'cors' })
+        //return JSON info from api//
         .then(function (response) {
             return response.json();
         })
-        // .then(function (response) {
-        //     image.src = response.forcast.forcastday[0].original.url;
-        // })
-        .catch(function (err) {
-            console.error(err);
-        });
+        //check to make sure the JSON data is logging on the console//
+        // .then(responseJson => console.log(responseJson))
+
+        //display icon on the page//
+        .then(function (response) {
+            let currentImage = document.querySelector("#current-image");
+            currentImage.src = response.current.condition.icon;
+
+            let currentCondition = document.querySelector("#current-condition");
+            currentCondition.innerText = response.current.condition.text;
+
+            let cityName = document.querySelector("#city-name")
+            cityName.innerText = response.location.name
+
+            let currentTemperatureF = document.querySelector("#current-temperature-f")
+            currentTemperatureF.innerText = response.current.temp_f + '\u00B0 F'
+
+            let currentTemperatureC = document.querySelector("#current-temperature-c")
+            currentTemperatureC.innerText = response.current.temp_c + '\u00B0 C'
+        })
+
+    // //display city name on the page//
+    // .then(function(response) {
+    //     let cityName = document.querySelector("#city-name")
+    //     cityName.innerText = response.location.name.region
+    // })
+
+    // .then(function (response) {
+    //     image.src = response.forcast.forcastday[0].original.url;
+    // })
+    // .catch (function (err) {
+    //     console.error(err);
+    // });
     return false;
 }
-newLocation();
+locationSearch();
 
 
