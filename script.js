@@ -6,8 +6,9 @@ function populateExtendedForcast(response) {
     //append function to container to populate card data//
     extendedForcastContainer = document.querySelector(".extended-forcast-container");
     console.log(response);
+    extendedForcastContainer.innerText = "";
     response.forecast.forecastday.forEach((forecastDay) => {
-        extendedForcastContainer.appendChild(createForcastCard(`http:${forecastDay.day.condition.icon}`, (forecastDay.date), forecastDay.day.condition.text, `Low: ${forecastDay.day.mintemp_f}`, `High: ${forecastDay.day.maxtemp_f}`, `Low: ${forecastDay.day.mintemp_c}`, `High: ${forecastDay.day.maxtemp_c}`));
+        extendedForcastContainer.appendChild(createForcastCard(`http:${forecastDay.day.condition.icon}`, forecastDay.date, forecastDay.day.condition.text, `Low: ${forecastDay.day.mintemp_f}`, `High: ${forecastDay.day.maxtemp_f}`, `Low: ${forecastDay.day.mintemp_c}`, `High: ${forecastDay.day.maxtemp_c}`));
     })
 }
 
@@ -35,7 +36,6 @@ function createForcastCard(img, day, info, lowF, highF, lowC, highC) {
 
     forcastFlex.appendChild(extendedDay);
     forcastFlex.appendChild(extendedWeatherImage);
-
 
     //create the extendedWeatherForcast div and append it to the forcast flex container//
     let extendedContidion = document.createElement("div");

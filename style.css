@@ -6,6 +6,7 @@
 html, 
 body {
     background-image: url(background.png);
+    background-size: 100%;
     color: rgb(24, 1, 24)
 }
 
@@ -13,34 +14,46 @@ body {
     font-size: 72px;
     font-weight: bold;
     text-align: center;
-    padding: 2rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
     color: rgb(24, 1, 24);
     text-shadow: -1px 1px 0 rgba(237, 222, 114),
 				  1px 1px 0 rgba(237, 222, 114),
 				 1px -1px 0 rgba(237, 222, 114);
-				-1px -1px 0 rgba(237, 222, 114);
-    
 }
 
 form {
     font-size: 36px;
+    font-weight: bold;
     text-align: center;
-    color: rgba(237, 222, 114);
-    text-shadow: -1px 1px 0 rgb(24, 1, 24),
-				  1px 1px 0 rgb(24, 1, 24),
-				 1px -1px 0 rgb(24, 1, 24);
-				-1px -1px 0 rgb(24, 1, 24);
+    color: rgb(24, 1, 24);
+    text-shadow: -1px 1px 0 rgba(237, 222, 114),
+				  1px 1px 0 rgba(237, 222, 114),
+				 1px -1px 0 rgba(237, 222, 114);
 }
 
 input {
     font-size: 24px;
+    background-color:rgba(237, 222, 114);
+    color: rgb(24, 1, 24);
+}
+
+input[type="radio"] {
+    accent-color:rgb(24, 1, 24);
+ }
+
+button {
+    background-color: rgba(237, 222, 114);
+    color: rgb(24, 1, 24);
+    padding:.1rem;
 }
 
 #current-title-and-container {
     border: 2px solid rgb(24, 1, 24);
     box-shadow: rgb(24, 1, 24) 0px 5px 15px;
     padding: 1rem;
-    width: 30rem;
+    width: 40rem;
+    
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 2rem;
@@ -60,31 +73,36 @@ input {
     text-align: center;
     font-weight: bold;
     font-size: 48px;
+    text-decoration: underline rgb(24, 1, 24);
 }
 
 #city-name {
-    height: 75px;
+    
     font-weight: bold;
     margin-top: .5rem;
+    font-size: 42px;
 }
 
 .current-img-name {
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 80px;
+    
     
 }
 
 #current-image {
     height: 5rem;
     width: 5rem;
-    border: 1px solid rgb(24, 1, 24);
-    
+    background-color:rgb(24, 1, 24);
 }
 
 .forcast-flex {
     text-align: center;
+    border: 5px solid rgb(24, 1, 24);
+    height: 200px;
+    width: 220px;
+    padding: 1rem;
 }
 
 .extended-container {
@@ -102,13 +120,15 @@ input {
 #extended-title {
     text-align: center;
     font-weight: bold;
-    font-size: 36px;
+    font-size: 48px;
+    text-decoration: underline rgb(24, 1, 24);
 }
 
 .extended-weather-img {
-    border: 1px solid rgb(24, 1, 24);
+    background-color:rgb(24, 1, 24);
     height: 5rem;
     width: 5rem;
+    
 }
 
 .extended-forcast-container {
