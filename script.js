@@ -6,7 +6,7 @@ function populateExtendedForcast(response) {
     extendedForcastContainer = document.querySelector(".extended-forcast-container");
     console.log(response);
     response.forecast.forecastday.forEach((forecastDay)=> {
-        extendedForcastContainer.appendChild(createForcastCard("Image", forecastDay.date, "Condition", "Temp Low", "Temp High", forecastDay.day.mintemp_c, "Temp High"));
+        extendedForcastContainer.appendChild(createForcastCard(`http:${forecastDay.day.condition.icon}`, forecastDay.date, forecastDay.day.condition.text, forecastDay.day.mintemp_f, forecastDay.day.maxtemp_c, forecastDay.day.mintemp_c, forecastDay.day.maxtemp_c));
     })
 
 }
@@ -51,19 +51,19 @@ function createForcastCard(img, day, info, lowF, highF, lowC, highC) {
 
     //create the temp high div and append it to the forcast flex container//
     let tempHighF = document.createElement("div");
-    tempHighF.classList.add("high-temp-f");
+    tempHighF.classList.add("high-temp-f", "temp-f");
     tempHighF.innerText = highF + '\u00B0 F';
     forcastFlex.appendChild(tempHighF);
 
     //create the temp low div and append it to the forcast flex container//
     let tempLowC = document.createElement("div");
-    tempLowC.classList.add("low-temp-c");
+    tempLowC.classList.add("low-temp-c", "temp-c");
     tempLowC.innerText = lowC + '\u00B0 C';
     forcastFlex.appendChild(tempLowC);
 
     //create the temp high div and append it to the forcast flex container//
     let tempHighC = document.createElement("div");
-    tempHighC.classList.add("high-temp-c");
+    tempHighC.classList.add("high-temp-c", "temp-c");
     tempHighC.innerText = highC + '\u00B0 C';
     forcastFlex.appendChild(tempHighC);
 
@@ -116,31 +116,7 @@ function locationSearch(e) {
             currentTemperatureC.innerText = response.current.temp_c + '\u00B0 C'
 
             // //creates extended weather dates data//
-            // let extendedDay1 = document.querySelector("#extended-day");
-            // extendedDay1.innerText = response.forcast.forcastday[0].date;
-
-            // let extendedDay2 = document.querySelector("#extended-day");
-            // extendedDay2.innerText = response.forcast.forcastday[1].date;
-
-            //creates extended forcast icon data//
-            populateExtendedForcast(response) 
-            // let extendedWeatherImage1 = document.querySelector("#extended-weather-img");
-            // extendedWeatherImage1.src = response.forcast.forcastday[0].condition.icon;
-
-            // let extendedWeatherImage2 = document.querySelector("#extended-weather-img");
-            // extendedWeatherImage2.src = response.forcast.forcastday[1].condition.icon;
-
-            // let extendedWeatherImage3 = document.querySelector("#extended-weather-img");
-            // extendedWeatherImage3.src = response.forcast.forcastday[2].condition.icon;
-
-            // let extendedWeatherImage4 = document.querySelector("#extended-weather-img");
-            // extendedWeatherImage4.src = response.forcast.forcastday[3].condition.icon;
-
-            // let extendedWeatherImage5 = document.querySelector("#extended-weather-img");
-            // extendedWeatherImage5.src = response.forcast.forcastday[4].condition.icon;
-
-
-
+            populateExtendedForcast(response); 
         })
 
     return false;
@@ -163,5 +139,5 @@ function fahrenheitOrCelsius() {
         document.querySelector(".temp-c").style.display = 'block';
     }
 }
-// fahrenheitOrCelsius();
+
 
