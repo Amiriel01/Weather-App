@@ -1,3 +1,4 @@
+
 //attaches extended-container html div to a global variable//
 
 
@@ -5,10 +6,9 @@ function populateExtendedForcast(response) {
     //append function to container to populate card data//
     extendedForcastContainer = document.querySelector(".extended-forcast-container");
     console.log(response);
-    response.forecast.forecastday.forEach((forecastDay)=> {
-        extendedForcastContainer.appendChild(createForcastCard(`http:${forecastDay.day.condition.icon}`, forecastDay.date, forecastDay.day.condition.text, forecastDay.day.mintemp_f, forecastDay.day.maxtemp_c, forecastDay.day.mintemp_c, forecastDay.day.maxtemp_c));
+    response.forecast.forecastday.forEach((forecastDay) => {
+        extendedForcastContainer.appendChild(createForcastCard(`http:${forecastDay.day.condition.icon}`, (forecastDay.date), forecastDay.day.condition.text, `Low: ${forecastDay.day.mintemp_f}`, `High: ${forecastDay.day.maxtemp_f}`, `Low: ${forecastDay.day.mintemp_c}`, `High: ${forecastDay.day.maxtemp_c}`));
     })
-
 }
 
 //create five day forcast cards function to create the cards//
@@ -45,35 +45,46 @@ function createForcastCard(img, day, info, lowF, highF, lowC, highC) {
 
     //create the temp low div and append it to the forcast flex container//
     let tempLowF = document.createElement("div");
-    tempLowF.classList.add("low-temp-f", "temp-f");
+    tempLowF.classList.add("temp-f");
     tempLowF.innerText = lowF + '\u00B0 F';
     forcastFlex.appendChild(tempLowF);
 
     //create the temp high div and append it to the forcast flex container//
     let tempHighF = document.createElement("div");
-    tempHighF.classList.add("high-temp-f", "temp-f");
+    tempHighF.classList.add("temp-f");
     tempHighF.innerText = highF + '\u00B0 F';
     forcastFlex.appendChild(tempHighF);
 
     //create the temp low div and append it to the forcast flex container//
     let tempLowC = document.createElement("div");
-    tempLowC.classList.add("low-temp-c", "temp-c");
+    tempLowC.classList.add("temp-c");
     tempLowC.innerText = lowC + '\u00B0 C';
     forcastFlex.appendChild(tempLowC);
 
     //create the temp high div and append it to the forcast flex container//
     let tempHighC = document.createElement("div");
-    tempHighC.classList.add("high-temp-c", "temp-c");
+    tempHighC.classList.add("temp-c");
     tempHighC.innerText = highC + '\u00B0 C';
     forcastFlex.appendChild(tempHighC);
 
     return forcastFlex;
 }
+
+//set the button for the location name input to run location search//
 let searchButton = document.querySelector('#enter');
 searchButton.addEventListener("click", locationSearch);
 
+//sets enter to be the button click listener too//
+let inputEnter = document.querySelector('#search');
+inputEnter.addEventListener("keypress", function(event) {
+    
+    if (event.key === "Enter") {
+        event.preventDefault();
+        document.querySelector('#enter').click()
+    }
+})
+
 function locationSearch(e) {
-    //set the button for the location name input to run location search//
 
     // let image = document.querySelector('img');
     let search = document.getElementById('search');
@@ -87,6 +98,7 @@ function locationSearch(e) {
     if (!!e) {
         e.preventDefault();
     };
+    console.log(searchValue)
     // console.log(searchValue);
     //fetch data from the api site//
     fetch(`https://api.weatherapi.com/v1/forecast.json?q=${searchValue}&days=5&key=8b8288369c154c74b09154532232806`, { mode: 'cors' })
@@ -116,7 +128,7 @@ function locationSearch(e) {
             currentTemperatureC.innerText = response.current.temp_c + '\u00B0 C'
 
             // //creates extended weather dates data//
-            populateExtendedForcast(response); 
+            populateExtendedForcast(response);
         })
 
     return false;
@@ -130,7 +142,7 @@ let toggleC = document.querySelector("#toggle-C");
 toggleC.addEventListener("click", fahrenheitOrCelsius);
 
 function fahrenheitOrCelsius() {
-    
+
     if (document.querySelector("#toggle-F").checked) {
         document.querySelector(".temp-f").style.display = 'block';
         document.querySelector(".temp-c").style.display = 'none';
@@ -138,6 +150,7 @@ function fahrenheitOrCelsius() {
         document.querySelector(".temp-f").style.display = 'none';
         document.querySelector(".temp-c").style.display = 'block';
     }
+    
 }
 
 

@@ -15,7 +15,7 @@
     <div id="title">Weather App</div>
     <form>
         <label name="location" id="location">Location:</label>
-        <input id="search" type="text" placeholder="Enter City Name Here">
+        <input id="search" type="text" placeholder="Enter Location Here">
         <button>
             <span id="enter" class="material-symbols-outlined">
                 search
@@ -26,15 +26,18 @@
         <label for="toggle-C" class="toggle-button">C&deg;</label>
         <input id="toggle-C" class="toggle toggle-right" name="toggle" value="true" type="radio">
     </form>
-    <div class="current-container">
-        <div class="current-img-name">
-            <img src='' id="current-image">
-            <div id="current-condition">Current Condition</div>
-        </div>
-        <div class="name-temp">
-            <div id="city-name">City Name</div>
-            <div id="current-temp-f" class="temp-f">Current Temperature-f</div>
-            <div id="current-temp-c" class="temp-c">Current Temperature-c</div>
+    <div id="current-title-and-container">
+        <div id="current-title">Current Conditions</div>
+        <div class="current-container">
+            <div class="name-temp">
+                <div id="city-name">City Name</div>
+                <div id="current-temp-f" class="temp-f">Current Temperature-f</div>
+                <div id="current-temp-c" class="temp-c">Current Temperature-c</div>
+            </div>
+            <div class="current-img-name">
+                <img src='' id="current-image">
+                <div id="current-condition">Current Condition</div>
+            </div>
         </div>
     </div>
     <div class="extended-container">
