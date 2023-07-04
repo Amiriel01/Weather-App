@@ -1,14 +1,12 @@
-
-//attaches extended-container html div to a global variable//
-
+import moment from 'moment';
 
 function populateExtendedForcast(response) {
     //append function to container to populate card data//
-    extendedForcastContainer = document.querySelector(".extended-forcast-container");
+    let extendedForcastContainer = document.querySelector(".extended-forcast-container");
     console.log(response);
     extendedForcastContainer.innerText = "";
     response.forecast.forecastday.forEach((forecastDay) => {
-        extendedForcastContainer.appendChild(createForcastCard(`http:${forecastDay.day.condition.icon}`, forecastDay.date, forecastDay.day.condition.text, `Low: ${forecastDay.day.mintemp_f}`, `High: ${forecastDay.day.maxtemp_f}`, `Low: ${forecastDay.day.mintemp_c}`, `High: ${forecastDay.day.maxtemp_c}`));
+        extendedForcastContainer.appendChild(createForcastCard(`http:${forecastDay.day.condition.icon}`, moment(forecastDay.date).format('dddd'), forecastDay.day.condition.text, `Low: ${forecastDay.day.mintemp_f}`, `High: ${forecastDay.day.maxtemp_f}`, `Low: ${forecastDay.day.mintemp_c}`, `High: ${forecastDay.day.maxtemp_c}`));
     })
 }
 
@@ -76,8 +74,8 @@ searchButton.addEventListener("click", locationSearch);
 
 //sets enter to be the button click listener too//
 let inputEnter = document.querySelector('#search');
-inputEnter.addEventListener("keypress", function(event) {
-    
+inputEnter.addEventListener("keypress", function (event) {
+
     if (event.key === "Enter") {
         event.preventDefault();
         document.querySelector('#enter').click()
@@ -133,7 +131,7 @@ function locationSearch(e) {
 
     return false;
 }
-locationSearch();
+
 
 let toggleF = document.querySelector("#toggle-F");
 toggleF.addEventListener("click", fahrenheitOrCelsius);
@@ -142,15 +140,23 @@ let toggleC = document.querySelector("#toggle-C");
 toggleC.addEventListener("click", fahrenheitOrCelsius);
 
 function fahrenheitOrCelsius() {
+    // console.log(document.querySelector(".temp-f"));
+    // console.log(document.querySelectorAll(".temp-f"));
 
     if (document.querySelector("#toggle-F").checked) {
-        document.querySelector(".temp-f").style.display = 'block';
-        document.querySelector(".temp-c").style.display = 'none';
+        document.querySelectorAll(".temp-f").forEach((e) => {
+            e.style.display = 'block';
+        })
+        document.querySelectorAll(".temp-c").forEach((e) => {
+            e.style.display = 'none';
+        })
     } else {
-        document.querySelector(".temp-f").style.display = 'none';
-        document.querySelector(".temp-c").style.display = 'block';
+        document.querySelectorAll(".temp-c").forEach((e) => {
+            e.style.display = 'block';
+        })
+        document.querySelectorAll(".temp-f").forEach((e) => {
+            e.style.display = 'none';
+        })
     }
-    
 }
-
-
+document.addEventListener("DOMContentLoaded", () => locationSearch());
