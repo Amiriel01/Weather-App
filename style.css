@@ -1,0 +1,148 @@
+* {
+    margin:0;
+    padding: 0;
+}
+
+html, 
+body {
+    background-image: url(background.png);
+    background-size: 100% 110%;
+    background-repeat: no-repeat;
+    
+    color: rgb(24, 1, 24)
+}
+
+#title {
+    font-size: 72px;
+    font-weight: bold;
+    text-align: center;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    color: rgb(24, 1, 24);
+    text-shadow: -1px 1px 0 rgba(237, 222, 114),
+				  1px 1px 0 rgba(237, 222, 114),
+				 1px -1px 0 rgba(237, 222, 114);
+}
+
+form {
+    font-size: 36px;
+    font-weight: bold;
+    text-align: center;
+    color: rgb(24, 1, 24);
+    text-shadow: -1px 1px 0 rgba(237, 222, 114),
+				  1px 1px 0 rgba(237, 222, 114),
+				 1px -1px 0 rgba(237, 222, 114);
+}
+
+input {
+    font-size: 24px;
+    background-color:rgba(237, 222, 114);
+    color: rgb(24, 1, 24);
+}
+
+input[type="radio"] {
+    accent-color:rgb(24, 1, 24);
+ }
+
+button {
+    background-color: rgba(237, 222, 114);
+    color: rgb(24, 1, 24);
+    padding:.1rem;
+}
+
+#current-title-and-container {
+    border: 2px solid rgb(24, 1, 24);
+    box-shadow: rgb(24, 1, 24) 0px 5px 15px;
+    padding: 1rem;
+    width: 40rem;
+    
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 2rem;
+    margin-top: 2rem;
+    background-color: rgba(237, 222, 114, 0.5);
+    font-weight: bold;
+}
+
+.current-container {
+    display: flex;
+    margin-top: 2rem;
+    justify-content: space-around;
+    font-size: 36px;
+}
+
+#current-title {
+    text-align: center;
+    font-weight: bold;
+    font-size: 48px;
+    text-decoration: underline rgb(24, 1, 24);
+}
+
+#city-name {
+    
+    font-weight: bold;
+    margin-top: .5rem;
+    font-size: 42px;
+}
+
+.current-img-name {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    
+}
+
+#current-image {
+    height: 5rem;
+    width: 5rem;
+    background-color:rgb(24, 1, 24);
+}
+
+.forcast-flex {
+    text-align: center;
+    border: 5px solid rgb(24, 1, 24);
+    height: 200px;
+    width: 220px;
+    padding: 1rem;
+}
+
+.extended-container {
+    font-size: 24px;
+    border: 2px solid rgb(24, 1, 24);
+    box-shadow: rgb(24, 1, 24) 0px 3px 8px;
+    padding: 1rem;
+    width: 100rem;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: rgba(237, 222, 114, 0.5);
+    font-weight: bold;
+}
+
+#extended-title {
+    text-align: center;
+    font-weight: bold;
+    font-size: 48px;
+    text-decoration: underline rgb(24, 1, 24);
+}
+
+.extended-weather-img {
+    background-color:rgb(24, 1, 24);
+    height: 5rem;
+    width: 5rem;
+    
+}
+
+.extended-forcast-container {
+    display: flex;
+    justify-content: space-around;
+    padding-top: 2rem;
+}
+
+.img-day {
+    display: flex;
+}
+
+.temp-c {
+    display: none;
+}

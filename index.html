@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+</head>
+
+<body>
+    <div id="title">Weather App</div>
+    <form>
+        <label name="location" id="location">Location:</label>
+        <input id="search" type="text" placeholder="Enter Location Here">
+        <button>
+            <span id="enter" class="material-symbols-outlined">
+                search
+            </span>
+        </button>
+        <label for="toggle-F" class="toggle-button">F&deg;</label>
+        <input id="toggle-F" class="toggle toggle-left" name="toggle" value="false" type="radio" checked>
+        <label for="toggle-C" class="toggle-button">C&deg;</label>
+        <input id="toggle-C" class="toggle toggle-right" name="toggle" value="true" type="radio">
+    </form>
+    <div id="current-title-and-container">
+        <div id="current-title">Current Conditions</div>
+        <div class="current-container">
+            <div class="name-temp">
+                <div id="city-name">City Name</div>
+                <div id="current-temp-f" class="temp-f">Current Temperature-f</div>
+                <div id="current-temp-c" class="temp-c">Current Temperature-c</div>
+            </div>
+            <div class="current-img-name">
+                <img src='' id="current-image">
+                <div id="current-condition">Current Condition</div>
+            </div>
+        </div>
+    </div>
+    <div class="extended-container">
+        <div id="extended-title">5 Day Forcast</div>
+        <div class="extended-forcast-container">
+            <!-- <div class="forcast-flex">
+                <div class="img-day">
+                    <img class="extended-weather-img" src="">
+                    <div class="extended-day">Day 1</div>
+                </div>
+                <div class="extended-weather-forcast">
+                    Day 1 Forcast
+                </div>
+            </div> -->
+        </div>
+    </div>
+    <script src="main.js"></script>
+</body>
+
+</html>
